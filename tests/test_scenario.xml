@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<scenario name="VoLTE Call Test">
+  <send retrans="500">
+    <![CDATA[
+    INVITE sip:user@lte-network.com SIP/2.0
+    Via: SIP/2.0/UDP 192.168.1.1
+    From: <sip:caller@lte-network.com>
+    To: <sip:user@lte-network.com>
+    Call-ID: call-id-1234
+    CSeq: 1 INVITE
+    Content-Length: 0
+    ]]>
+  </send>
+  <recv response="100"/>
+  <recv response="200"/>
+  <send>
+    <![CDATA[
+    ACK SIP/2.0
+    Via: SIP/2.0/UDP 192.168.1.1
+    From: <sip:caller@lte-network.com>
+    To: <sip:user@lte-network.com>
+    Call-ID: call-id-1234
+    CSeq: 1 ACK
+    Content-Length: 0
+    ]]>
+  </send>
+  <pause milliseconds="300000"/>
+  <send>
+    <![CDATA[
+    BYE SIP/2.0
+    Via: SIP/2.0/UDP 192.168.1.1
+    From: <sip:caller@lte-network.com>
+    To: <sip:user@lte-network.com>
+    Call-ID: call-id-1234
+    CSeq: 2 BYE
+    Content-Length: 0
+    ]]>
+  </send>
+  <recv response="200"/>
+</scenario>
+ 
